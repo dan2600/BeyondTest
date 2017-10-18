@@ -36,7 +36,6 @@ routerApp.config(function($stateProvider, $urlRouterProvider, $sceDelegateProvid
 
 routerApp.controller('listController', ['$scope', '$http', '$state', '$location', function($scope, $http, $state, $location) {
     $http.get('/api/playlist').success(function(data) {
-        console.log(data.items);
         $scope.thisVideo = $state.params.id;
         $scope.videos = data.items;
 
