@@ -1,0 +1,15 @@
+<div class="jumbotron text-left">
+    <h1>My Youtube Playlist</h1>
+</div>
+<div class="videobox row" ng-repeat="video in videos">
+    <a href="#/videos/{{video.id}}">
+        <div class="col-sm-6 col-sm-push-6">
+            <h3>{{video.snippet.title}}</h3>
+            <h4>Published on {{video.snippet.publishedAt | date : 'MMM d, YYYY'}}</h4>
+            <p>{{video.snippet.description | limitTo : 256}}</p>
+        </div>
+        <div class="col-sm-6 col-sm-pull-6">
+            <img class="img-responsive" ng-src="{{video.snippet.thumbnails.high.url}}">
+        </div>
+    </a>
+</div>
