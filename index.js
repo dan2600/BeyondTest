@@ -5,18 +5,18 @@ var app = express()
 var sass = require('node-sass-middleware');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-var path    = require('path'); 
+var path = require('path');
 
 //Data URL for JSON
 var url = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails,status&maxResults=10&playlistId=PLSi28iDfECJPJYFA4wjlF5KUucFvc0qbQ&key=AIzaSyCuv_16onZRx3qHDStC-FUp__A6si-fStw';
 
-  app.use(
-     sass({
-         src: __dirname + '/sass', 
-         dest: __dirname + '/public',
-         debug: true,       
-     })
-  );   
+app.use(
+    sass({
+        src: __dirname + '/sass',
+        dest: __dirname + '/public',
+        debug: true,
+    })
+);
 
 
 
@@ -27,10 +27,8 @@ app.use(bodyParser.urlencoded({ 'extended': 'true' })); // parse application/x-w
 app.use(bodyParser.json()); // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 
+var port = process.env.PORT || 8080;
 
-
-app.listen(8080);
-console.log("App listening on port 8080");
 
 
 // routes
@@ -39,7 +37,7 @@ console.log("App listening on port 8080");
 //we Could just access the playlist from the frontend but might as well build a custom API endpoint. 
 app.get('/api/playlist', function(req, res) {
 
-	//This would be built as an actual API call. 
+    //This would be built as an actual API call. 
     https.get(url, function(r2) {
         var body = '';
 
@@ -55,12 +53,13 @@ app.get('/api/playlist', function(req, res) {
         console.log("Got an error: ", e);
     });
 
-//Load the fontend
- app.get('*', function(req, res) {
+    //Load the fontend
+    app.get('*', function(req, res) {
         res.sendfile('./public/index.html');
     });
-
-
-
-
 });
+
+
+
+app.listen(port);
+console.log("App listening on port 8080");
