@@ -1,16 +1,16 @@
 <a href="#/">Back to Full Video List</a>
 <div class="albumDetail" ng-repeat="video in videos | filter: {id: thisVideo} ">
-    <div class="col-sm-12">
+    <div class="col-md-12">
         <h3>{{video.snippet.title}}</h3>
         <h4>Published on {{video.snippet.publishedAt | date : 'MMM d, YYYY'}}</h4>
     </div>
-    <div class="col-sm-6">
+    <div class="col-md-6">
         <div class="video-container">
             <iframe id="ytplayer" type="text/html" ng-src="{{getIframeSrc(video.snippet.resourceId.videoId)}}" frameborder="0" allowfullscreen>
             </iframe>
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-md-6">
         <p>{{video.snippet.description}}</p>
     </div>
 </div>
