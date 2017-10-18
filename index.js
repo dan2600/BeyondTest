@@ -1,3 +1,4 @@
+var compression = require('compression')
 var express = require('express');
 var http = require("http");
 var https = require("https");
@@ -5,11 +6,11 @@ var app = express()
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var path = require('path');
-
+app.use(compression())
 //Data URL for JSON
 var url = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails,status&maxResults=10&playlistId=PLSi28iDfECJPJYFA4wjlF5KUucFvc0qbQ&key=AIzaSyCuv_16onZRx3qHDStC-FUp__A6si-fStw';
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public', { maxAge: 86400000 }));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ 'extended': 'true' }));
 app.use(bodyParser.json());
