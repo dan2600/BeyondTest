@@ -2,7 +2,6 @@ var express = require('express');
 var http = require("http");
 var https = require("https");
 var app = express()
-var sass = require('node-sass-middleware');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var path = require('path');
